@@ -1,0 +1,50 @@
+Types d'information identifées
+ - headers (en-têtes)
+ - code
+   - modules du code: carte_jeu, interface_utilisateur (entrees et sorties), 
+     communication (reseau|interne), elements_jeu, moteur_jeu
+ - doc: manuels
+ - tests
+
+
+Fichiers/Répertoires pour organiser ces infos:
+ - mini-mud/: Répertoire projet (racine du repository git)
+   - LICENCE
+   - AUTHORS
+   - Readme.txt: Intro au projet, référence à "doc"
+   - doc/
+     - Readme.txt: Description du projet, manuel utilisateur
+     - realisation:
+       - 01_spec/
+         - spec.txt
+       - 02_analyse/
+         - analyse_florian.txt
+         - analyse_kevin.odt
+         - analyse_diagramme.svg
+       - 03_developpement/
+         - arborescence.txt
+   - bin/
+     - Readme.txt: Dossier contenant les exécutables
+     - Executable produit
+   - include/: En-têtes des modules de notre projet
+     - carte_jeu.h
+     - interface_utilisateur.h
+     - communication.h
+     - elements_jeu.h
+     - moteur_jeu.h
+   - src/: Code des modules de notre projet
+     - carte_jeu.cpp
+     - interface_utilisateur.cpp
+     - communication/
+       - reseau/
+         - com_client.cpp
+         - com_serveur.cpp
+       - local/
+         - com_locale.cpp
+     - elements_jeu/
+       - joueur.cpp
+       - PNJ.cpp
+       - objets.cpp
+       - decors.cpp
+     - moteur_jeu.cpp
+   - tests/: Tests des différents modules de notre projet

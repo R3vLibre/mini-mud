@@ -1,0 +1,81 @@
+Répartition des modules à développer (F=Florian, K=Kévin):
+==========================================================
+ - mini-mud/: Répertoire projet (racine du repository git)
+   - include/: Fichiers d'en-tête
+   - src/: Code des modules de notre projet
+     - (main.cpp)
+K    - carte_jeu.cpp
+F    - interface_utilisateur.cpp
+     - communication/
+       - reseau/
+         - com_client.cpp
+         - com_serveur.cpp
+       - local/
+F        - com_locale.cpp
+     - elements_jeu/
+F      - joueur.cpp
+       - PNJ.cpp
+       - objets.cpp
+       - decors.cpp
+K    - moteur_jeu.cpp
+   - tests/: Tests des différents modules de notre projet
+
+
+Compilation:
+============
+$ g++ -Wall -ansi -I ~/dev/mini-mud/include/ fichier.cpp
+
+
+Syntaxe de base pour les classes C++
+====================================
+moteur_jeu.h
+------------
+class moteur_jeu  /*: public classe_parent // si héritage */ 
+{
+    /* Membres privés (par défaut, si rien n'est précisé) */
+    // private:
+
+   /* Membres publics */
+   public:
+     int x;
+     string nom;
+     moteur_jeu();        // constructeur == initialiser_jeu()
+     moteur_jeu(string);  // constructeur à un argument
+     ~moteur_jeu();       //destructeur
+     quitter_jeu(joueur);
+     arreter_jeu();
+}
+
+/* Appels  dans main
+M1=new moteur_jeu();  // Constructeur sans argument
+M2=new moteur_jeu("Le nom du moteur"); // Constructeur à un argument
+
+*/
+
+moteur_jeu.cpp
+--------------
+#include " moteur_jeu.h"
+
+moteur_jeu::moteur_jeu()
+{
+   //code du constructeur
+   return;
+}
+
+moteur_jeu::moteur_jeu(string nom_init)
+{
+   //code du constructeur
+   nom = nom_init;
+   this->nom = nom_init;
+   return;
+}
+
+
+moteur_jeu::quitter_jeu() 
+{
+   //code du joueur
+   return;
+}
+
+
+

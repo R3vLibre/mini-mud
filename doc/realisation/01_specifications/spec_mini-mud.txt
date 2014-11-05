@@ -1,0 +1,52 @@
+                  ******************************
+                  Description du projet mini-mud
+                  ******************************
+
+
+Le projet a pour but de réaliser un MUD simpliste:
+ - le monde (appelé "donjon" en référence au célèbre D&D) délimite l'espace
+   dans lequel les joueurs évoluent
+ - la carte du monde est découpée en zones juxtaposées les unes aux autres
+ - chaque zone est reliée bi-directionnellement (envisager passages à
+   sens unique) à d'autres zones, dans les 8 directions "nord,
+   nord-est, est, sud-est, sud, sud-ouest, ouest, nord-oest"
+ - un certain nombre d'éléments de jeu peuvent être présents dans une zone
+ - les éléments de jeu sont: les joueurs, les personnages non joueurs, 
+   des éléments de décor "interactifs" et des objets du jeu
+ - le moteur de jeu:
+   - compte le temps depuis le démarrage du jeu (vitesse propre au jeu)
+   - gère des événements de jeu: uniquement aube, jour, crépuscule, nuit
+ - chaque joueur interagit avec le monde et son contenu par le moyen de
+   commandes déclinables en sous-commandes, qui sont:
+   - voir: affiche la description
+     - voir: description de la zone
+     - voir perso: description du personage (description + possessions)
+     - voir dans <contenant>: description de ce qui est présent dans <contenant>
+     - voir <élément>: description de l'élément désigné
+   - le nom d'une des 8 directions ou leur abrégé (n, no, o, so, s, se, e, ne):
+     déplace le joueur vers la zone correspondante si le passage est ouvert
+   - prendre <...>: prend en main un objet (N mains libres max, N=2 par défaut)
+     - prendre <objet>: prend un objet désigné dans la zone
+     - prendre <objet> de <contenant>: prend l'objet localisé dans le contenant
+     - prendre <objet> pour <contenant>: prend l'objet localisé dans la zone pour le mettre dans contenant
+   - les objets ont un volume en 3 dimensions et un poids ; 
+     un contenant a des dimensions max, un volume max et peut contenir un poids max
+     => l'objet peut être pris si :
+         - (dimensions < dim max contenant) 
+           et (somme(volumes) < volume max contenant)
+           et (somme(poids) < poids max contenant)
+         - somme(poids) < poids max joueur
+   -  <vetement>
+   - déposer <...>: dépose un objet dans la zone
+     déposer <objet>: dépose , déposer <objet> de <contenant>: dépose l'objet désigné 
+ - dans cette première version, un seul joueur est actif
+ - prévoir anticipativement l'ajout d'une interface pour le réseau:
+   scinder le moteur de jeu et l'interface utilisateur pour pouvoir
+   réaliser 2 programmes qui interagiront et prévoir une interface de
+   communication entre ces 2 programmes
+ - fonctionnalités à prévoir pour l'implémentation réseau:
+   - parler <joueur>: parle à un joueur dans la même zone que soi
+     (les autres entendent)
+   - chuchoter <joueur>: parle à un joueur dans la même zone que soi
+     (les autres voient le joueur parler à un autre, sans savoir ce qu'il dit)
+   - msg <joueur>, msg tous: envoie un message à un joueur dans le jeu
