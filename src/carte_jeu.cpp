@@ -29,3 +29,8 @@ Zone::Zone()
 	*/
 	return;
 }
+
+std::string Zone::decrire()
+{
+	return description;
+}
