@@ -6,7 +6,8 @@ int main(int argc, char *argv[])
     //boucle principale
     while (description != "quitter()")
     {
-      if.lire_entree();
+      entree = if.lire_entree();
+	  com.transmettre_action(entree);
       moteur.derouler_jeu();
     }
     exit(0);

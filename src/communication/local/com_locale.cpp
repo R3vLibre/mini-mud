@@ -1,0 +1,1 @@
+// Module gérant la communication locale
