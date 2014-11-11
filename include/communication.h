@@ -11,8 +11,6 @@ class Communication
 	std::string transmettre_message(std::string);
 };
 
-Communication toto;
 
 #endif
 
-Communication titi;
