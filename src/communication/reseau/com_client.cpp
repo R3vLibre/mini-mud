@@ -4,11 +4,17 @@ Com_Client::Com_Client(){
 
 }
 
-void Com_Client::connecter(){
+void Com_Client::connecter(char *hostaddress){
+
+	/*char buffer[32]= ""; */ // sent by server
+
 	sock = socket(AF_INET, SOCK_STREAM, 0);
-	sin.sin_addr.s_addr = inet_addr("127.0.0.1");
+	sin.sin_addr.s_addr = inet_addr(hostaddress);
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(23);
+
+	sock_err = bind(sock, (sockaddr*)&sin, recsize);
+
 	if(connect(sock, (sockaddr*)&sin, sizeof(sin)) != -1)
 	{
 		printf("connexion à %s sur port %d\n", inet_ntoa(sin.sin_addr),htons(sin.sin_port));
