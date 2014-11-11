@@ -1,4 +1,4 @@
-#ifdef __COMMUNICATION_H__ 
+#ifndef __COMMUNICATION_H__ 
 #define __COMMUNICATION_H__
 
 #include <iostream>
@@ -9,6 +9,10 @@ class Communication
 	public:
 	std::string transmettre_action(std::string);
 	std::string transmettre_message(std::string);
-}
+};
 
-#endif 
+Communication toto;
+
+#endif
+
+Communication titi;
