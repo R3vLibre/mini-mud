@@ -6,7 +6,7 @@ Joueur::Joueur(std::string nom, Zone *p_zone_initiale)
 {
 	nom_joueur = nom; // enregistre le nom
 	p_zone_courante = p_zone_initiale; // enregistrement de la position du joueur
-};
+}
 
 std::string Joueur::traiter_action(std::string action) // cette fonction peut et sera appelé par la Comunication
 {
@@ -17,7 +17,7 @@ std::string Joueur::traiter_action(std::string action) // cette fonction peut et
 	} //je demande à la zone_courante de me renvoyer sa description
 
 		return retour_action; // a revoir
-};
+}
 
 
 //Communication.transmettre_message(retour_action); // servira lorsque les evenements seront a l'origine du jeu

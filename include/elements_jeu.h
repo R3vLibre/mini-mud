@@ -1,8 +1,9 @@
+#ifndef __ELEMENTS_JEU_H__ // identifiant c -> toujours en majuscule (par convention)
+#define __ELEMENTS_JEU_H__
+
 #include <iostream>
-//#include "communication.h"
 #include "carte_jeu.h"
-
-
+#include "communication.h" // pour appeler "traiter_action()"
 
 class Joueur
 {
@@ -17,12 +18,4 @@ public:
 	std::string traiter_action(std::string); // si l'action est contenu dans le tableau des actions possibles return appeler action
 };
 
-
-//voirePerso
-//voireCase f(zone)	
-//std::string action;
-
-		// je lui envoi le std::string "action"
-		// il verifie si 
-		// verifier si je peux aller au nord (verifier sur ta case)
-		// il me renvoie
+#endif
