@@ -1,4 +1,8 @@
 #ignorer les fichiers de sauvegarde /sous linux/ tout se qui se termine par tilde ~
 *~
+
+#ignorer les fichiers temporaires générés par les éditeurs
+*.swp
+
 #ignorer les fichiers objets générés par le compilateur (.o)
 *.o

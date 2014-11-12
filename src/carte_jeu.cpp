@@ -7,7 +7,7 @@ Carte_Jeu::Carte_Jeu()
 	p_liste_zones=new Zone();
 	/*cout << "bonjour et bienvenue dans notre super jeu de la mort qui tue" << endl;*/
 	return;
-}
+};
 
 int Zone::nb_zone=0;
 
@@ -28,9 +28,9 @@ Zone::Zone()
 	num_zone=nb_zone;
 	*/
 	return;
-}
+};
 
 std::string Zone::decrire()
 {
 	return description;
-}
+};
