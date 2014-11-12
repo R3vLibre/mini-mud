@@ -4,12 +4,12 @@ Com_Client::Com_Client(){
 
 }
 
-void Com_Client::connecter(char *hostaddress){
+void Com_Client::connecter(const std::string adresse_hote){
 
-	/*char buffer[32]= ""; */ // sent by server
+	/*char buffer[32]= ""; */ // sent by server || envoyé par le serveur
 
 	sock = socket(AF_INET, SOCK_STREAM, 0);
-	sin.sin_addr.s_addr = inet_addr(hostaddress);
+	sin.sin_addr.s_addr = inet_addr(adresse_hote.c_str());
 	sin.sin_family = AF_INET;
 	sin.sin_port = htons(23);
 
@@ -21,15 +21,29 @@ void Com_Client::connecter(char *hostaddress){
 		if(recv(sock, buffer, 32, 0) != -1)
 			printf("Recu : %s\n", buffer);
 	}
-	else
-		printf("connexion impossible\n");
+	else 
+	{
+	  printf("connexion impossible\n");
+	}
 }
 
-std::string Com_Client::transmettre_action(){
+int Com_Client::transmettre_action(std::string action)
+{
 	return 0;	
 }
 
-std::string Com_Client::transmettre_message(){
-	return 0;
+int Com_Client::transmettre_message(std::string message)
+{
+      cout << "Fonction transmettre_message() non gérée côté client" << endl;
+      return -1;
 }
 
+std::string Com_Client::recevoir_message()
+{
+	std::string message;
+	
+	//lire le message sur le reseau
+	message = ""; //à remplacer par la chaine receptionnée sur la socket
+	
+	return message;
+}

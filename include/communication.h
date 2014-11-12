@@ -7,8 +7,8 @@
 class Communication
 {
 	public:
-	std::string transmettre_action(std::string);
-	std::string transmettre_message(std::string);
+	int transmettre_action(const std::string);
+	int transmettre_message(const std::string);
 };
 
 

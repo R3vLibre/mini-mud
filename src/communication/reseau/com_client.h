@@ -30,9 +30,10 @@ class Com_Client : public Communication
 		Com_Client(); // constructeur, associe la socket reseau
 		~Com_Client();
 
-		void connecter(char *hostaddress); // se connecte au serveur a l'adresse IP ou hostname designer par hostaddress
-		std::string transmettre_action();
-		std::string transmettre_message();
+		 // se connecte au serveur a l'adresse IP ou hostname designer par hostaddress
+		void connecter(const std::string adresse_hote);
+		int transmettre_action(std::string);
+		int transmettre_message(std::string);
 };
 
 #endif /* __COM_CLIENT_H__ */
