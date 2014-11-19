@@ -23,7 +23,7 @@ K    - moteur_jeu.cpp
 
 Compilation:
 ============
-$ g++ -Wall -ansi -I ~/dev/mini-mud/include/ fichier.cpp
+$ g++ -c -Wall -ansi -I ~/dev/mini-mud/include/ fichier.cpp
 
 
 Syntaxe de base pour les classes C++
