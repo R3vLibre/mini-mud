@@ -14,19 +14,10 @@ int Zone::nb_zone=0;
 Zone::Zone()
 {
 	//chaque zones 
-	description="Voici la zone Num 1";
-	num_zone=nb_zone++;
-	/* équivalent à:
-	num_zone=nb_zone;
-	nb_zone++;
-	*/
-	
-	/*l'inverse :
-	num_zone=++nb_zone;
-	est équivalent à:
-	nb_zone++;
-	num_zone=nb_zone;
-	*/
+  num_zone = nb_zone;
+  description="Voici la zone Num "+string(num_zone);
+
+
 	return;
 }
 

@@ -19,3 +19,9 @@ La documentation complète se trouve dans le répertoire ``doc``, y compris
 une description de l'arborescence.
 
 Ce *Readme* sera amené à être complété au fil de l'avancement du projet...
+
+Branche "mini-mud_sdl"
+======================
+
+La branche "mini-mud_sdl" est une étude de l'utilisation de la librairie SDL
+appliquée au projet mini-mud.
