@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "elements_jeu.h"
 #include "interface_utilisateur.h"
 

@@ -10,13 +10,14 @@ Joueur::Joueur(std::string nom, Zone *p_zone_initiale)
 
 std::string Joueur::traiter_action(std::string action) // cette fonction peut et sera appelé par la Comunication
 {
-	std::string retour_action;//var locale
-	if(action == "voir")
-	{ 
-		retour_action=p_zone_courante->decrire();
-	} //je demande à la zone_courante de me renvoyer sa description
-
-		return retour_action; // a revoir
+  std::string retour_action;//var locale
+    if(action == "voir")
+    { 
+      retour_action=p_zone_courante->decrire();
+      
+    } //je demande à la zone_courante de me renvoyer sa description
+  
+  return retour_action; // a revoir
 };
 
 

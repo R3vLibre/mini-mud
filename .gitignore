@@ -2,3 +2,7 @@
 *~
 #ignorer les fichiers objets générés par le compilateur (.o)
 *.o
+#ignorer les fichiers de l'IDE 
+.kdev*
+*.kdev*
+.directory
