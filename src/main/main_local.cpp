@@ -1,5 +1,8 @@
+#include <stdio.h>
+
 int main(int argc, char *argv[])
 {
+    printf("démarrage du mini-mud\n");
     /* action à prévoir pour main local :
     moteur = new moteur_jeu();
     if = new Interface_Utilisateur();
