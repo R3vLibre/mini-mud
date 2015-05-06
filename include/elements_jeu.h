@@ -2,7 +2,7 @@
 #define __ELEMENT_JEU__
 #include <iostream>
 //#include "communication.h"
-#include "carte_jeu.h"
+#include "monde.h"
 
 class Element_Jeu
 {

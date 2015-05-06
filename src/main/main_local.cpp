@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    Interface_Utilisateur interface;
+    Interface_Utilisateur interface("Mini-Mud");
     Moteur_Jeu moteur(&interface);
     std::cout<<"démarrage du mini-mud\n";
     
@@ -26,6 +26,5 @@ int main(int argc, char *argv[])
      * moteur.derouler_jeu();
      * }
      */
-    
     exit(0);
 }
