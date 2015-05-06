@@ -1,27 +1,54 @@
-#include "carte_jeu.h"
+#include <iostream>
+#include <string>
+
+#include "monde.h"
+#include "elements_jeu.h"
 
 //carte du monde : initialisation des zones
-Carte_Jeu::Carte_Jeu()
-{	
-	//création de la zone initiale
-	p_liste_zones=new Zone();
-	/*cout << "bonjour et bienvenue dans notre super jeu de la mort qui tue" << endl;*/
-	return;
+
+Monde::Monde()
+{
+    //création de la zone initiale
+    p_zone_initiale = new Zone("zone_initiale");
+    liste_zones.insert(liste_zones.end(), *p_zone_initiale);
+    return;
 }
+
+
+Joueur* Monde::ajouter_joueur(std::string nom_joueur)
+{
+    Joueur* joueur;
+    joueur = new Joueur(nom_joueur, p_zone_initiale);
+    return joueur;
+}
+
+////----------------------- changement de classe ---------------------------------////
 
 int Zone::nb_zone=0;
 
-Zone::Zone()
+Zone::Zone(std::string nom_zone)
 {
-	//chaque zones 
-  num_zone = nb_zone;
-  description="Voici la zone Num "+string(num_zone);
-
-
-	return;
+    //chaque zones
+    num_zone = nb_zone;
+    nom = nom_zone;
+    //description="Voici la zone Num "+ std::to_string(num_zone);
+    description="Voici la zone " + nom;
+    
+    return;
 }
+
+Zone::~Zone()
+{
+}
+
 
 std::string Zone::decrire()
 {
-	return description;
+    return description;
 }
+
+std::list<Element_Jeu> Zone::lister_elements()
+{
+    return liste_elements;
+}
+

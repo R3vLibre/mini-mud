@@ -11,7 +11,7 @@ builddir=../bin
 binaire=mini-mud
 
 # TOUS LES MODULES SONT A AJOUTER SUR CETTE LIGNE
-objets_modules=main/main_local.o interface_utilisateur/module_interface_utilisateur.o
+objets_modules=main/main_local.o interface_utilisateur/module_interface_utilisateur.o monde/module_monde.o elements_jeu/module_elements_jeu.o
 objets=moteur_jeu.o
 
 LDFLAGS+=$(shell sdl2-config --cflags)

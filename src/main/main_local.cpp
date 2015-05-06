@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    Interface_Utilisateur interface;
+    Interface_Utilisateur interface("Mini-Mud");
     Moteur_Jeu moteur(&interface);
     std::cout<<"démarrage du mini-mud\n";
     
@@ -15,17 +15,11 @@ int main(int argc, char *argv[])
      * Class Moteur créer interface et créer le monde (-> printf ("monde crée")).
      */
     
-    /* faire un Del de l'interface de jeu : faire un destructeur de l'objet pointé */
-    
-    /*
-     * //boucle principale
-     * while (description != "quitter()")
-     * {
-     * entree = if.lire_entree();
-     * com.transmettre_action(entree);
-     * moteur.derouler_jeu();
-     * }
-     */
-    
+    /* TODO :
+     * faire un Del de l'interface de jeu : faire un destructeur de l'objet pointé 
+     * ajouter une fonction d'initialisation du monde dans l'init du moteur
+     * ici il faut appeler la fonction : moteur.lancerJeu
+     * lancerjeu : actualiser l'affichage, lire les évènements et avancer jeu.*/
+
     exit(0);
 }

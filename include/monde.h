@@ -1,27 +1,44 @@
-#ifndef __CARTE_JEU__
-#define __CARTE_JEU__
+#ifndef __MONDE__
+#define __MONDE__
 #include <iostream>
+#include <list>
+
+
+class Zone;
+
+#include "elements_jeu.h"
 
 class Zone
 {
-	public:
-		static int nb_zone;
-		Zone();         // constructeur
-		~Zone();     // destructeur
-		std::string decrire();
-	private:
-		int num_zone;
-		std::string description;
+public:
+    static int nb_zone;
+    // constructeur
+    Zone(std::string nom_zone);
+    // destructeur
+    ~Zone();
+    std::string decrire();
+    std::list<Element_Jeu> lister_elements();
+private:
+    int num_zone;
+    std::string nom;
+    std::string description;
+    std::list<Element_Jeu> liste_elements;
 };
 
-class Carte_Jeu
+class Monde
 {
-	public:
-		Carte_Jeu();          // constructeur
-		~Carte_Jeu();      // destructeur
-	private:
-		Zone * p_liste_zones;
-		//chaque zone connait le(s) pointeur(s) de sa (ses) zone(s) adjacente(s)
+public:
+    // constructeur
+    Monde();
+    // destructeur
+    ~Monde();
+    //methodes
+    Joueur* ajouter_joueur(std::string);
+    //attributs
+    Zone* p_zone_initiale;
+private:
+    //chaque zone connait le(s) pointeur(s) de sa (ses) zone(s) adjacente(s)
+    std::list<Zone> liste_zones;
 };
 
-#endif
+#endif // __MONDE__

@@ -2,28 +2,42 @@
 #define __ELEMENT_JEU__
 #include <iostream>
 //#include "communication.h"
-#include "carte_jeu.h"
+
+
+class Element_Jeu;
+class Joueur;
+
+#include "monde.h"
+#include "interface_utilisateur.h"
 
 class Element_Jeu
 {
-private:
-public:
-  Element_Jeu(std::string, Zone*);
-  ~Element_Jeu();
+    public:
+        Element_Jeu(std::string, Zone*);
+        ~Element_Jeu();
+        std::string nom;
+    protected:
+        // adresse vers un objet de type Zone
+        Zone *p_zone_courante;
 };
   
 class Joueur: public Element_Jeu
 {
-private:
-	Zone *p_zone_courante; 				// adresse vers un objet de type Zone
-	std::string nom_joueur;
-	//std::string main_droite="";
-	//std::string main_gauche="";
-	//std::string equipement_porte="";
-public:
-	Joueur(std::string, Zone*); // déclaration du constructeur
-  ~Joueur();
-	std::string traiter_action(std::string); // si l'action est contenu dans le tableau des actions possibles return appeler action
+    public:
+        // déclaration du constructeur
+        Joueur(std::string, Zone*);
+        ~Joueur();
+        // si l'action est contenu dans le tableau des actions possibles return appeler action
+        std::string traiter_action(std::string);
+        std::string activer_interface(Interface_Utilisateur *);
+        void desactiver_interface();
+        void actualiser_affichage();
+        std::string obtenir_entree();
+    private:
+        Interface_Utilisateur* p_interface_utilisateur;
+        //std::string main_droite="";
+        //std::string main_gauche="";
+        //std::string equipement_porte="";
 };
 
 
