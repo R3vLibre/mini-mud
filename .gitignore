@@ -6,3 +6,5 @@
 .kdev*
 *.kdev*
 .directory
+#ignorer les fichier de Kate
+*.kate-swp
