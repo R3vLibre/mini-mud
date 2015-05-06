@@ -1,3 +1,5 @@
+#ifndef __INTERFACE_UTILISATEUR__
+#define __INTERFACE_UTILISATEUR__
 #include <iostream>
 
 //using namespace std;  // Eviter les collisions entre une des mes fonctions qui porterait le meme nom qu'une fonction d'une librairie
@@ -11,6 +13,7 @@ class Interface_Utilisateur
     Interface_Utilisateur(std::string);          // constructeur
     ~Interface_Utilisateur();                    // destructeur
 
+<<<<<<< HEAD
     std::string entree_clavier;
     std::string lire_entree();
     std::string actualiser_ecran(std::string);
@@ -26,3 +29,5 @@ class Interface_Utilisateur
     int largeur_case;
     int hauteur_case;
 };
+
+#endif
