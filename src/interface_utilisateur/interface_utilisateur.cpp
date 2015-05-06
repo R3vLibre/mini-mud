@@ -35,4 +35,3 @@ int Interface_Utilisateur::initialiser_interface()
 {
     std::cout<<"Initialiser interface utilisateur";
 }
-

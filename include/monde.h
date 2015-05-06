@@ -1,3 +1,5 @@
+#ifndef __CARTE_JEU__
+#define __CARTE_JEU__
 #include <iostream>
 
 class Zone
@@ -22,3 +24,4 @@ class Carte_Jeu
 		//chaque zone connait le(s) pointeur(s) de sa (ses) zone(s) adjacente(s)
 };
 
+#endif

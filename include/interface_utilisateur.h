@@ -1,6 +1,8 @@
 #ifndef __INTERFACE_UTILISATEUR__
 #define __INTERFACE_UTILISATEUR__
 #include <iostream>
+#include <list>
+#include "elements_jeu.h"
 
 //using namespace std;  // Eviter les collisions entre une des mes fonctions qui porterait le meme nom qu'une fonction d'une librairie
 					    // Le fait d'écrire std::max dit au compilateur de chercher explicitement la fonction max du namespace std::. 
@@ -13,10 +15,9 @@ class Interface_Utilisateur
     Interface_Utilisateur(std::string);          // constructeur
     ~Interface_Utilisateur();                    // destructeur
 
-<<<<<<< HEAD
     std::string entree_clavier;
     std::string lire_entree();
-    std::string actualiser_ecran(std::string);
+    std::string actualiser_ecran(Zone,std::list<Element_Jeu>);
     
   private:
     int initialiser_interface();
