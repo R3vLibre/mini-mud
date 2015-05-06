@@ -1,4 +1,4 @@
-#include <SDL2/SDL.h>
+
 #include <iostream>
 #include "interface_utilisateur.h"
 
@@ -11,21 +11,22 @@ Interface_Utilisateur::Interface_Utilisateur(std::string nom_application)
     this->nom_application = nom_application;
     titre_fenetre = this->nom_application.c_str(); 
     
-      //Les images 
-    SDL_Window* ecran = NULL;
+    // ecran 
+    ecran = NULL;
 
     //Start SDL       
     SDL_Init( SDL_INIT_VIDEO );
 
     //Set up ecran 
     ecran = SDL_CreateWindow(titre_fenetre,this->posX_init_fenetre,this->posY_init_fenetre,this->largeur_fenetre, this->hauteur_fenetre, SDL_WINDOW_SHOWN );
+    //rendu_ecran = SDL_CreateRenderer(ecran, -1, SDL_RENDERER_SOFTWARE);
+
 }
 
 Interface_Utilisateur::~Interface_Utilisateur()
 {
     std::cout<<"Détruire interface utilisateur";
-
-    //Quit SDL 
+    SDL_DestroyWindow(ecran);
     SDL_Quit();
 }
 

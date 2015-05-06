@@ -21,5 +21,6 @@ int main(int argc, char *argv[])
      * ici il faut appeler la fonction : moteur.lancerJeu
      * lancerjeu : actualiser l'affichage, lire les évènements et avancer jeu.*/
 
+
     exit(0);
 }

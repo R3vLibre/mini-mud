@@ -4,7 +4,7 @@
 # $^ -> tous les prérequis (liste des fichiers source à compiler)
 # $< -> le 1er prérequis
 
-objets=interface_utilisateur.o interface_utilisateur_entrees.o
+objets=interface_utilisateur.o interface_utilisateur_entrees.o interface_utilisateur_sorties.o
 
 # creer un module qui concatene tous les objets .o créés indivuduellement
 module_interface_utilisateur.o: $(objets)

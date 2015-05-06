@@ -38,9 +38,7 @@ std::string Moteur_Jeu::lancer_jeu()
         liste_joueurs.front().actualiser_affichage();
         entree =  liste_joueurs.front().obtenir_entree();
         derouler_jeu(entree);
-        
     }
-
 }
 
 void Moteur_Jeu::derouler_jeu(std::string evenements_joueurs)

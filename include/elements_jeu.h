@@ -10,6 +10,7 @@ class Joueur;
 #include "monde.h"
 #include "interface_utilisateur.h"
 
+
 class Element_Jeu
 {
     public:
