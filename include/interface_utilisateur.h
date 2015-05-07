@@ -25,9 +25,9 @@ class Interface_Utilisateur
     std::string entree_clavier;
     std::string lire_entree();
     std::string actualiser_ecran(Zone *,std::list<Element_Jeu>);
+    int initialiser_interface(Joueur*);
     
   private:
-    int initialiser_interface();
     SDL_Surface* charger_image(std::string nom_image,std::string extension);
     static const int largeur_fenetre = 1024;
     static const int hauteur_fenetre = 768;
@@ -40,9 +40,8 @@ class Interface_Utilisateur
     SDL_Surface* ecran_jeu;
     int largeur_case;
     int hauteur_case;
-    
-    
-    Joueur joueur();
+
+    Joueur* p_joueur;
 };
 
 #endif

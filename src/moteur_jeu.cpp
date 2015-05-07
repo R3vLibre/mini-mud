@@ -8,13 +8,14 @@ Moteur_Jeu::Moteur_Jeu(Interface_Utilisateur *interface_utilisateur)
     std::cout<< "Initialisation de Moteur_Jeu\n";
     
     //code du constructeur
-    interface = interface_utilisateur;
+    p_interface = interface_utilisateur;
     Joueur* joueur;
     
-    monde = new Monde;
-    joueur = monde->ajouter_joueur("Joueur");
+    p_monde = new Monde;
+    joueur = p_monde->ajouter_joueur("Joueur");
+    joueur->activer_interface(p_interface);
     liste_joueurs.insert(liste_joueurs.end(), *joueur);
-    
+    p_interface->initialiser_interface(joueur);
     
     return;
     

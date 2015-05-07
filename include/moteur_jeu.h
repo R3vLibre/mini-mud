@@ -19,9 +19,9 @@ public:
 
 private:
     void derouler_jeu(std::string);
-    Interface_Utilisateur *interface;
+    Interface_Utilisateur *p_interface;
     bool jouer;
-    Monde* monde;
+    Monde* p_monde;
     std::list<Joueur> liste_joueurs;
 };
 #endif

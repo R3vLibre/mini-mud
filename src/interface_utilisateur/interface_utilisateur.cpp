@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include "interface_utilisateur.h"
 
@@ -21,6 +20,9 @@ Interface_Utilisateur::Interface_Utilisateur(std::string nom_application)
     ecran = SDL_CreateWindow(titre_fenetre,this->posX_init_fenetre,this->posY_init_fenetre,this->largeur_fenetre, this->hauteur_fenetre, SDL_WINDOW_SHOWN );
     //rendu_ecran = SDL_CreateRenderer(ecran, -1, SDL_RENDERER_SOFTWARE);
 
+    if (ecran == NULL) {
+      std::cerr << "Erreur dans création instance Interface_Utilisateur: " << std::string(SDL_GetError());
+    }
 }
 
 Interface_Utilisateur::~Interface_Utilisateur()
@@ -32,7 +34,8 @@ Interface_Utilisateur::~Interface_Utilisateur()
 
 
 // commune
-int Interface_Utilisateur::initialiser_interface()
+int Interface_Utilisateur::initialiser_interface(Joueur* ref_joueur)
 {
     std::cout<<"Initialiser interface utilisateur";
+    p_joueur = ref_joueur;
 }

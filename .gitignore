@@ -19,4 +19,4 @@
 #ignorer les répertoires générés par les Makefile
 bin/
 obj/
-
+.deps/

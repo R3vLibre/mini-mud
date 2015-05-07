@@ -43,9 +43,13 @@ objets := $(patsubst %.cpp, %.o, $(sources))
 #options_include := $(foreach inc,$(shell find $(rootdir) -type d -name $(incdirname)),-I $(inc))
 options_include := -I $(incdir)
 
-$(module): $(objdir) $(objets_modules) $(objets)
+$(module): $(depdir) $(objdir) $(objets_modules) $(objets)
 	@echo "Making module '$@'"
-	$(LD) -r -o $@ $(filter-out $(objdir), $^)
+	$(LD) -r -o $@ $(filter-out $(depdir), $(filter-out $(objdir), $^))
+
+$(depdir):
+	@echo "Création du chemin 'depdir': '$@'"
+	@mkdir -p $@
 
 $(objdir):
 	@echo "Création du chemin 'objdir': '$@'"
@@ -61,7 +65,7 @@ $(objets_modules):
 #   Voir http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/
 %.o: %.cpp
 	@echo "Compilation de $< en $@ et génération des dépendances sous $(depdir):"
-	$(CXX) $(CXXFLAGS) -MD -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -Wp,-MD,$(df).d -c -o $@ $<
 	@cp $(df).d $(df).P; \
           sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
               -e '/^$$/ d' -e 's/$$/ :/' < $(df).d >> $(df).P; \
@@ -78,8 +82,8 @@ clean: clean-module-courant $(clean-modules)
 
 clean-module-courant:
 	@echo "Nettoyage du module $(nom_module): suppression de $(module) et $(objets)"
-	rm -f $(module) $(objets) $(depends)
-	rm -rf $(objdir)
+	rm -f $(module) $(objets)
+	rm -rf $(objdir) $(depdir)
 
 $(clean-modules): clean-%:
 	@echo "  Nettoyage du sous-module '$*':"

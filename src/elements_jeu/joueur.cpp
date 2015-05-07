@@ -4,7 +4,7 @@
 //definition du constructeur
 Joueur::Joueur(std::string nom_joueur, Zone *p_zone_initiale): Element_Jeu(nom_joueur, p_zone_initiale)
 {
-
+  p_interface_utilisateur = NULL;
 };
 
 Joueur::~Joueur()
@@ -25,7 +25,7 @@ std::string Joueur::traiter_action(std::string action) // cette fonction peut et
 };
 
 
-std::string Joueur::activer_interface(Interface_Utilisateur* p_if_utilisateur)
+void Joueur::activer_interface(Interface_Utilisateur* p_if_utilisateur)
 {
     p_interface_utilisateur = p_if_utilisateur;
 };

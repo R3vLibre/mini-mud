@@ -57,6 +57,9 @@ SDL_Surface* Interface_Utilisateur::charger_image(std::string nom_image,std::str
     // Charger image
     image = SDL_LoadBMP(chemin_image);
 
+    if (image == NULL) {
+      std::cerr << "Erreur au chargement de l'image '" << chemin_temporaire << "': " << std::string(SDL_GetError());
+    }
     return image;
 }
 

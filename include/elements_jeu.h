@@ -30,7 +30,7 @@ class Joueur: public Element_Jeu
         ~Joueur();
         // si l'action est contenu dans le tableau des actions possibles return appeler action
         std::string traiter_action(std::string);
-        std::string activer_interface(Interface_Utilisateur *);
+        void activer_interface(Interface_Utilisateur *);
         void desactiver_interface();
         void actualiser_affichage();
         std::string obtenir_entree();
