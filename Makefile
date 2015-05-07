@@ -1,31 +1,76 @@
-# Makefile pour la compilation du projet mini-mud
-# Makefil -> premier usage -> Compilation
-# Makefile -> Génerer un ou plusieurs fichiers automatiquement grâce à d'autres fichiers (documentation,transforme fichier textes en html...)
+# Projet de mini-mud: Utilisation de la librairie SDL
+#
+# Makefile: Compilation et installation du projet mini-mud avec la librairie SDL
+#
+# Objectif: Apprendre à construire un Makefile dans le cadre d'un projet
+#
+# Auteurs et Licence: Ce projet est un logiciel libre sous licence GNU GPL,
+#                     voir les fichiers "Authors" et "License" pour les détails.
 
-# Définition des variables
+$(info echo "* Chargement de ./Makefile")
+## Définition et import du fichier de paramétrage des Makefile du projet
+export config_make:=Makefile.config
+include $(config_make)
 
-# Liste des "targets" à réaliser (targets -> fichier à créer ou action à faire)
+## Définition des chemins spécifiques à la compilation
+# rootdir: chemin vers la racine du projet, pour les Makefile successifs
+export rootdir:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+# Chemins vers des composantes spécifiques du projet:
+# srcdir: chemin vers le code source
+export srcdir=$(join $(rootdir),src/)
+# buildir: chemin où créer les binaires
+export builddir=$(join $(rootdir),bin/)
+# testdir: chemin où sont localisés les tests
+testsdir=tests
 
-# Dans le shell
-# make target target1 target2 target3
-# make -> réalise la première target
+# Binaires du projet: un seul binaire, celui du jeu lui-même
+executables=mini-mud
+export binaires:=$(foreach bin, $(executables), $(join $(builddir),$(bin)))
 
-# Par défaut il test si le fichier existe déja (éviter de recompiler ce qui n'a pas été modifié) - le point Phony désactive ce macanisme
-.PHONY: all build install
+.PHONY: all
+all: build doc
 
-# les tabulations sont obligatoires
-# make all (dans le shell) ou make (dans le shell) car c'est le premier du fichier
-all: build
+.PHONY: build doc
+build: $(builddir)
+	@echo "Compilation du projet $(PACKAGE)"
+	$(MAKE) -C $(srcdir)
 
-# make build (dans le shell)
-build:
-	@echo "compilation du projet mini-mud"
-	$(MAKE) -C src
+doc:
+	@echo "Génération de la documentation du projet $(PACKAGE)"
 
-# make install (dans le shell)
-install: 
-	@echo "installation du projet mini-mud"
+$(builddir):
+	@echo "Création du chemin 'builddir': '$@'"
+	@mkdir -p $@
 
-# clean dans src
-clean: 
-	$(MAKE) -C src $@
+.PHONY: install install-bin install-doc
+install: install-bin install-doc
+
+install-bin: $(binaires)
+	@echo "Installation des binaires sous $(bindir)"
+
+install-doc:
+
+
+.PHONY: uninstall
+uninstall:
+
+
+.PHONY: clean distclean
+clean:
+	@echo "Nettoyage du projet"
+	@rm -rf $(builddir)
+	@$(MAKE) -C $(srcdir) $@
+
+distclean: clean
+	@echo "Nettoyage des fichiers d'initialisation"
+	@rm -f $(config_make)
+
+.PHONY: check
+check:
+	@echo "Lancement des tests..."
+#       Note: formule équivalente à: $(MAKE) -C $(testsdir)
+	@cd $(testsdir) && $(MAKE) $@
+
+.PHONY: dist
+dist:
+	@echo "A faire: création de 'package-version.tar.gz' à partir des sources"

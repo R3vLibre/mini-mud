@@ -1,10 +1,22 @@
-#ignorer les fichiers de sauvegarde /sous linux/ tout se qui se termine par tilde ~
+## Ignorer les fichiers de sauvegarde /sous linux/
+# fichiers de sauvegardes emacs: tout se qui se termine par tilde ~
 *~
-#ignorer les fichiers objets générés par le compilateur (.o)
-*.o
-#ignorer les fichiers de l'IDE 
+# fichiers de sauvegarde vi
+.*.swp
+# fichiers de l'IDE kdevelop
 .kdev*
 *.kdev*
+# fichiers du gestionnaire de fichier dolphin
 .directory
-#ignorer les fichier de Kate
+# fichiers de Kate
 *.kate-swp
+
+## Ignorer les fichiers produits par les Makefile
+#ignorer les fichiers objets générés par le compilateur (.o)
+*.o
+#ignorer les dépendances
+*.d
+#ignorer les répertoires générés par les Makefile
+bin/
+obj/
+

@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     Interface_Utilisateur interface("Mini-Mud");
     Moteur_Jeu moteur(&interface);
     std::cout<<"démarrage du mini-mud\n";
+    moteur.lancer_jeu();
     
     /*
      * commençons par initialiser le moteur et lancer le moteur : init(Moteur) lancerJeu()

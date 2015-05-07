@@ -1,17 +1,30 @@
-# Makefile pour la compilation des sources
+# Projet de mini-mud: Utilisation de la librairie SDL
+#
+# Makefile: Compilation et installation du projet mini-mud avec la librairie SDL
+#
+# Objectif: Apprendre à construire un Makefile dans le cadre d'un projet
+#
+# Auteurs et Licence: Ce projet est un logiciel libre sous licence GNU GPL,
+#                     voir les fichiers "Authors" et "License" pour les détails.
 
-# $@ -> target
-# $^ -> tous les prérequis (liste des fichiers source à compiler)
-# $< -> le 1er prérequis
+$(info echo "* Chargement de src/communication/Makefile")
+## Import des règles génériques de compilation d'un module
+include $(srcdir)/Makefile.common
 
-objets=elements_jeu.o joueur.o
 
-# creer un module qui concatene tous les objets .o créés indivuduellement
-module_elements_jeu.o: $(objets)
-	$(LD) -r -o $@ $^
+## Règles spécifiques à la racine du code source
+# Pour le répertoire principal, réinitialisation des modules identifiés
+# pour le remplacer par les binaires à construire.
 
-# $(CXX) -> correspond par défaut à g++
-CXXFLAGS+=-I ../../include
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c -o $@ $<
+$(info "CC=$(CC)")
+$(info "CCFLAGS=$(CCFLAGS)")
+$(info "CXX=$(CXX)")
+$(info "CXXFLAGS=$(CXXFLAGS)")
+$(info "binaires=$(binaires)")
+$(info "module=$(module)")
+$(info "subdirs=$(subdirs)")
+$(info "subdirs_base=$(basename $(subdirs))")
+$(info "liste_modules=$(liste_modules)")
+$(info "liste_objets=$(liste_objets)")
+

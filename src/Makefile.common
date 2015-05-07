@@ -1,0 +1,89 @@
+# Projet de mini-mud: Utilisation de la librairie SDL
+#
+# Makefile: Règles génériques pour la compilation d'un module du projet mini-mud
+#
+# Objectif: Apprendre à construire un Makefile dans le cadre d'un projet
+#
+# Auteurs et Licence: Ce projet est un logiciel libre sous licence GNU GPL,
+#                     voir les fichiers "Authors" et "License" pour les détails.
+
+$(info "  - Chargement de Makefile.common")
+## Import du paramétrage global
+include $(rootdir)/$(config_make)
+
+# Définitions pour les dépendances
+depdir=.deps
+df=$(depdir)/$(*F)
+depends=$(sources:%.cpp=$(depdir)/%.P)
+
+# Destination pour les objets créés
+objdir=obj
+
+# Chemin vers le répertoire d'include (à ajuster si un "include" par module)
+incdirname=include
+incdir=$(join $(rootdir),$(incdirname))
+
+
+## Détermination du nom et de l'objet principal du module
+# Ces variables définies par "=" pourront être écrasés dans le Makefile
+# principal pour modifier la règle $(module) par défaut.
+ifndef nom_module
+nom_module = $(notdir $(patsubst %/,%, \
+	$(dir $(realpath $(firstword $(MAKEFILE_LIST))))))
+endif
+module = $(join $(objdir)/$(nom_module),.o)
+
+## Prise en compte des sous-composants
+modules := $(filter-out $(objdir), $(patsubst %/,%,$(subst ./,,$(sort $(dir $(wildcard ./*/))))))
+objets_modules := $(foreach mod, $(modules), \
+	$(join $(mod)/$(objdir)/,$(mod).o))
+sources := $(wildcard *.cpp)
+objets := $(patsubst %.cpp, %.o, $(sources))
+#options_include := $(foreach mod,$(modules),-I $(join $(mod)/,include))
+#options_include := $(foreach inc,$(shell find $(rootdir) -type d -name $(incdirname)),-I $(inc))
+options_include := -I $(incdir)
+
+$(module): $(objdir) $(objets_modules) $(objets)
+	@echo "Making module '$@'"
+	$(LD) -r -o $@ $(filter-out $(objdir), $^)
+
+$(objdir):
+	@echo "Création du chemin 'objdir': '$@'"
+	@mkdir -p $@
+
+$(objets_modules):
+	@echo "Making sous-module '$@'"
+	$(MAKE) -C $(subst $(objdir),, $(@D)) $(join $(objdir)/, $(@F))
+
+
+# Règle de base normalement implicite, rendue explicite pour apprentissage 
+# Adaptée spécifiquement pour la génération des dépendances:
+#   Voir http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/
+%.o: %.cpp
+	@echo "Compilation de $< en $@ et génération des dépendances sous $(depdir):"
+	$(CXX) $(CXXFLAGS) -MD -c -o $@ $<
+	@cp $(df).d $(df).P; \
+          sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
+              -e '/^$$/ d' -e 's/$$/ :/' < $(df).d >> $(df).P; \
+          rm -f $(df).d
+
+CXXFLAGS += $(options_include)
+# Note: par défaut, "." est le premier répertoire consulté pour les en-têtes
+
+
+clean-modules:=$(foreach mod, $(modules), $(join clean-,$(mod)))
+
+.PHONY: clean clean-module-courant $(clean-modules)
+clean: clean-module-courant $(clean-modules)
+
+clean-module-courant:
+	@echo "Nettoyage du module $(nom_module): suppression de $(module) et $(objets)"
+	rm -f $(module) $(objets) $(depends)
+	rm -rf $(objdir)
+
+$(clean-modules): clean-%:
+	@echo "  Nettoyage du sous-module '$*':"
+	@$(MAKE) -C $* clean
+
+
+-include $(depends)
